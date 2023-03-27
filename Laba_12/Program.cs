@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace Collection
 {
@@ -10,10 +9,9 @@ namespace Collection
         {
             Console.WriteLine("Дорогой пользователь, введи название города для поиска индекса: ");
             string s = Console.ReadLine();
-            // создаю значение s которое будет вводит пользователь
 
             // создаю новый словарь
-            Hashtable dict = new Hashtable()
+            Hashtable index = new Hashtable()
             {
                 ["пенза"] = 58,
                 ["иркутск"] = 38,
@@ -27,8 +25,28 @@ namespace Collection
                 ["сахалинская область"] = 65
             };
 
-            // вывожу на консоль то что написал пользователь
-            Console.WriteLine($"индекс этого города: {dict[s]}");
+            if (index.ContainsKey(s))
+            {
+                Console.WriteLine($"индекс этого города: {index[s]}");
+                // выводит индекс города по ключу
+
+                index.Remove(s);
+                // удаляем
+
+                foreach (var i in index.Keys)
+                {
+                    Console.WriteLine(index[i]);
+                }
+                // перебираем массив и выводим все элементы словаря
+
+                index.Clear();
+                // полностью удаляем содержимое словаря
+            }
+            else
+            {
+                Console.WriteLine("Такого ключа не существует, шэф");
+                //это сообщение выводится в консоль если ключа не существует
+            }
         }
     }
 }
